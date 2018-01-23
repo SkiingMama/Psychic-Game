@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>The Psychic Game</title>
+</head>
+
+<body>
+
+  <div id="game">
+    <h1> The Psychic Game</h1>
+
+    <h2>Guess what letter I'm thinking of</h2>
+  
+  <script type="text/javascript">
+
+    var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+    var wins = 0; 
+    var losses = 0;
+    var guesses = 10;
+    var guessesLeft = 10;
+    var guessesSoFar = "";
+    
+        var computerGuess = computerChoices[Math.floor(Math.random() *computerChoices.length)];
+
+        function reset() {
+          guesses = 10;
+          guessesLeft = 10;        
+        }
+        
+        document.onkeyup = function() {
+          console.log("here");
+          guessesLeft--;
+          var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+
+        guessesSoFar += userGuess;
+
+
+        if (guessesLeft > 0) {
+          if (userGuess == computerGuess) {
+                wins++;
+                computerGuess = computerChoices[Math.floor(Math.random() *computerChoices.length)];
+            }
+            else if (guessesLeft == 0) {
+              losses++;
+            }
+
+
+            }
+            else {
+            losses++;
+            reset();
+            }
+          
+          var html = "<h1>The Psychic Game</h1>" + "<h2>Guess what letter I'm thinking of</h2>" + "<p>wins: " + wins + " </p>" + "<p>losses: " + losses + "</p>" + "<p>Guesses Left: " + guessesLeft + "</p>" + "<p>Your Guesses so far: " + guessesSoFar + "</p>";
+
+          document.getElementById("game").innerHTML = html;
+          }
+    
+          var html = "<h1>The Psychic Game</h1>" + "<h2>Guess what letter I'm thinking of</h2>" + "<p>wins: " + wins + " </p>" + "<p>losses: " + losses + "</p>" + "<p>Guesses Left: " + guessesLeft + "</p>" + "<p>Your Guesses so far: " + guessesSoFar + "</p>";
+
+          document.getElementById("game").innerHTML = html;
+
+  </script>
+
+</body>
+
+</div>
+
+</html>
